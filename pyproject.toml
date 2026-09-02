@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gemini-image-proxy"
+version = "1.0.0"
+description = "Production-grade Google Gemini Web Imagen 3 reverse image generation & Image-to-Image framework"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "playwright>=1.40.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "pyyaml>=6.0.0",
+    "pillow>=10.0.0",
+    "colorama>=0.4.6",
+    "fastapi>=0.115,<1",
+    "python-multipart>=0.0.20,<1",
+    "uvicorn>=0.32,<1",
+]
+
+[project.optional-dependencies]
+auth = ["psutil>=5.9.0"]
+dev = [
+    "httpx>=0.28,<1",
+    "pytest>=8,<10",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.setuptools.package-data]
+"src.auth" = ["chrome_extension/*.json", "chrome_extension/*.js"]

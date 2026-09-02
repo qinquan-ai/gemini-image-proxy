@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Gemini Cookie Refresh Bridge",
+  "version": "1.1.0",
+  "description": "Refreshes Gemini cookies only while the local updater is running.",
+  "minimum_chrome_version": "120",
+  "permissions": [
+    "alarms",
+    "cookies",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://*.google.com/*",
+    "https://gemini.google.com/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://gemini.google.com/*"],
+      "js": ["gemini_page.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Gemini Cookie Refresh Bridge"
+  }
+}
